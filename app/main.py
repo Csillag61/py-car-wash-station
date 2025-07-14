@@ -32,6 +32,10 @@ class CarWashStation:
         return round(total_income, 1)
     
     def rate_service(self, new_rating: float) -> None:
+        if not isinstance(new_rating, int):
+          raise TypeError("Rating must be an integer.")
+        if not (1 <= new_rating <= 10):
+          raise ValueError("Rating must be between 1 and 10.")
         total_score = (self.average_rating * self.count_of_ratings + new_rating)
         self.count_of_ratings += 1
         self.average_rating = round(total_score / self.count_of_ratings, 1)
